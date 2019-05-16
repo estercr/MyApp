@@ -1,14 +1,43 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
+    <ion-title>Tarefas</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+
+  <ion-list>
+    <ion-list-header no-lines>
+    <ion-label>Minhas Tarefas:</ion-label>  
+    </ion-list-header>
+
+    <ion-item *ngFor="let task of task; let i=idex" [ngClass]="{'marked': task.done === true}">
+    
+    <ion-icon item-start
+    [name]="task.done ? 'checkmark-circle-outline' : 'radio-button-off'"
+    (click)="markAsDone(task)">
+  </ion-icon>
+
+  <span (click)="editTask(task.description, i)">
+    {{ task.description }}
+  </span>
+
+  <ion-icon item-end name="trash" color="dark"
+  (click)="deleteTask(i)">
+</ion-icon>
+</ion-item>
+
+<ion-item *ngIf="!tasks.length">
+    <ion-note>
+      Sem Tarefas
+    </ion-note>
+  </ion-item>
+</ion-list>
+
+<ion-fab right bottom>
+     <button ion-fab color="primary" navPush="TaskPage">
+      <ion-icon name="add"></ion-icon>
+    </button>
+  </ion-fab>
+
 </ion-content>

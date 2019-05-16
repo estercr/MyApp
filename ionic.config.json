@@ -1,5 +1,7 @@
 {
   "name": "TheApp",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "ionic-angular"
 }
